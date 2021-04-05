@@ -1,5 +1,5 @@
 <template>
-  <footer class="app-footer">
+  <footer class="app-footer fixed-bottom">
     <template v-if="isLoggedIn">
       <router-link :to="{name: 'auth.AuthInfo'}">Režim: <b class="app-connection-notice text-warning">Lokální</b></router-link>
       <i class="spacer"/>

@@ -1,0 +1,6 @@
+{
+  "collections.sortDirection.asc": "Vzestupně",
+  "collections.sortDirection.desc": "Sestupně",
+  "collections.sortDirection.none": "Ne",
+  "collections.filter.addFilter": "Přidat filtr"
+}

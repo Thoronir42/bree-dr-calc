@@ -9,7 +9,7 @@
       </div>
 
       <p class="mt-5">
-        Více se můžete dočíst na stránce <router-link :to="{name: 'app.About'}">{{ $t('app.view.About') }}</router-link>.
+        Více se můžete dočíst na stránce <router-link :to="{name: 'app.About'}">{{ t('app.view.About') }}</router-link>.
       </p>
     </template>
 
@@ -44,18 +44,18 @@
 
 <script lang="ts">
 import {computed, defineComponent, reactive} from 'vue';
-import {translateMixin} from "@/i18n";
-import authStore from "@/modules/auth/store/authStore";
-import appStore from "@/modules/app/store/appStore";
-import beastsStore from "@/modules/bestiary/store/beastsStore";
-import demoStore from "@/modules/demo/store/demoStore";
+
+import appStore from "@app/store/appStore"
+
+import authStore from "@/modules/auth/store/authStore"
+import beastsStore from "@/modules/bestiary/store/beastsStore"
+import demoStore from "@/modules/demo/store/demoStore"
+import {useI18n} from "@i18n"
 
 export default defineComponent({
-  name: 'Home',
-  mixins: [
-    translateMixin,
-  ],
   setup() {
+    const i18n = useI18n()
+
     const bestiarySummary = reactive({
       beastCount: computed(() => beastsStore.state.beastList.length),
       stationCount: computed(() => beastsStore.state.breedingStations.length)
@@ -63,6 +63,8 @@ export default defineComponent({
     const userAuthenticated = computed(() => authStore.getters.isLoggedIn())
 
     return {
+      ...i18n,
+
       appName: appStore.state.appName,
       userAuthenticated,
       beginDemo: () => {

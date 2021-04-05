@@ -1,6 +1,6 @@
 <template>
   <DecForm :model-value="beast">
-    <DecFieldset :legend="$t('bestiary.beast.fieldGroup.generalInfo')" class="form-row" model-section="general">
+    <DecFieldset :legend="t('bestiary.beast.fieldGroup.generalInfo')" class="form-row" model-section="general">
       <div class="col-md-3">
         <DecFormInput v-bind="generalFields.gender"/>
       </div>
@@ -19,7 +19,7 @@
       </div>
     </DecFieldset>
 
-    <DecFieldset :legend="$t('bestiary.beast.fieldGroup.ancestry')" class="form-row" model-section="lineage">
+    <DecFieldset :legend="t('bestiary.beast.fieldGroup.ancestry')" class="form-row" model-section="lineage">
       <div class="col-md">
         <DecFormInput v-bind="lineageFields.father"/>
       </div>
@@ -41,20 +41,15 @@
   </DecForm>
 </template>
 
-<script>
-import DecFieldset from "@/modules/typeful/components/DecFieldset"
-import {getFields} from "@/modules/typeful/services/FormsService"
-import DecFormInput from "@/modules/typeful/components/DecFormInput"
-import DecForm from "@/modules/typeful/components/DecForm"
-import beastSchema from "@/modules/bestiary/typeful/beast.schema.json"
-import {translateMixin} from "@/i18n"
-import beastsStore from "@/modules/bestiary/store/beastsStore"
-import {computed, ref} from "vue";
+<script lang="ts">
+import {computed, defineComponent, ref} from "vue"
+import {useI18n} from "@i18n"
+import {DecForm, DecFieldset, DecFormInput, getFields} from "@vtf-form"
 
-export default {
-  mixins: [
-    translateMixin,
-  ],
+import beastSchema from "@/modules/bestiary/typeful/beast.schema.json"
+import beastsStore from "@/modules/bestiary/store/beastsStore"
+
+export default defineComponent({
   components: {
     DecForm,
     DecFieldset,
@@ -64,6 +59,8 @@ export default {
     beast: {type: Object, required: true},
   },
   setup(props) {
+    const i18n = useI18n()
+
     const generalFields = getFields(beastSchema.general.schema, {
       createFieldLabel: 'bestiary.beast.general.',
     })
@@ -77,6 +74,8 @@ export default {
     })
 
     return {
+      ...i18n,
+
       generalFields,
       lineageFields,
 
@@ -95,4 +94,4 @@ export default {
     }
   },
 }
-</script>
+)</script>

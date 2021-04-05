@@ -21,13 +21,15 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, PropType, ref, shallowRef} from "vue";
-import TreeNode from "./AncestryTree/TreeNodeFlat.vue";
-import {TraversalRules} from "./AncestryTree/AncestryTree";
-import {Beast} from "../model/Bestiary";
-import {translateMixin} from "@/i18n";
-import BeastFamilyTree, {RelationName} from "@/modules/bestiary/model/BeastFamilyTree";
-import beastsStore from "@/modules/bestiary/store/beastsStore";
+import {computed, defineComponent, PropType, ref, shallowRef} from "vue"
+import {useI18n} from "@i18n"
+
+import TreeNode from "./AncestryTree/TreeNodeFlat.vue"
+import {TraversalRules} from "./AncestryTree/AncestryTree"
+import {Beast} from "../model/Bestiary"
+
+import BeastFamilyTree, {RelationName} from "../model/BeastFamilyTree"
+import beastsStore from "../store/beastsStore"
 
 type BeastNode = {
   relation: string,
@@ -38,9 +40,6 @@ type BeastNode = {
 
 
 export default defineComponent({
-  mixins: [
-    translateMixin,
-  ],
   props: {
     ancestryTree: {type: Object as PropType<BeastFamilyTree>, required: true},
     walkRelations: {type: Array as PropType<RelationName[]>, required: true},
@@ -48,6 +47,8 @@ export default defineComponent({
     rootNodeRelation: {type: String, default: 'root'},
   },
   setup(props) {
+    const i18n = useI18n()
+
     const rules: TraversalRules<BeastNode> = {
       getChildren(node) {
         const ancestryTree: BeastFamilyTree = props.ancestryTree
@@ -91,6 +92,8 @@ export default defineComponent({
     })
 
     return {
+      ...i18n,
+
       treeNodeComponent: shallowRef(TreeNode),
 
       rootNode,

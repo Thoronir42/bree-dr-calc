@@ -16,9 +16,7 @@
 
 <script lang="ts">
 import {defineComponent, ref} from "vue"
-import DecForm from "@/modules/typeful/components/DecForm.vue"
-import DecFormInput from "@/modules/typeful/components/DecFormInput.vue"
-import {getFields} from "@/modules/typeful/services/FormsService"
+import {DecForm, DecFormInput, getFields} from "@vtf-form"
 
 import stationSchema from "../typeful/breedingStationSchema.json"
 

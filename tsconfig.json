@@ -13,13 +13,21 @@
     "sourceMap": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "types": [
       "webpack-env",
       "mocha",
       "chai"
     ],
     "paths": {
+      "@i18n": ["libs/i18n/src/index.ts"],
+      "@i18n/*": ["libs/i18n/src/*"],
+      "@vtf-typeful": ["libs/@vtf/typeful/src/index.ts"],
+      "@vtf-typeful/*": ["libs/@vtf/typeful/src/*"],
+      "@vtf-form": ["libs/@vtf/form/src"],
+      "@vtf-collection": ["libs/@vtf/collection/src"],
+      "@vtf-ui/*": ["libs/@vtf/ui/src/*"],
+      "@app/*": ["src/modules/app/*"],
       "@/*": [
         "src/*"
       ]

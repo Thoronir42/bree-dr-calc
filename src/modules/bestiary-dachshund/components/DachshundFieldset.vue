@@ -24,14 +24,15 @@
   </DecFieldset>
 </template>
 
-<script>
-import {getFields} from "@/modules/typeful/services/FormsService"
+<script lang="ts">
+import {DecFieldset, DecFormInput, getFields} from "@vtf-form"
 import dachshundSchema from "@/modules/bestiary-dachshund/typeful/dachshund.schema.json"
-import DecFieldset from "@/modules/typeful/components/DecFieldset"
-import DecFormInput from "@/modules/typeful/components/DecFormInput"
 
 export default {
-  components: {DecFormInput, DecFieldset},
+  components: {
+    DecFieldset,
+    DecFormInput,
+  },
   data() {
     const dachshundFields = getFields(dachshundSchema, {
       createFieldLabel: 'dachshund.field.',

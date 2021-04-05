@@ -8,7 +8,7 @@
 
     <Footer class="card">
       <template #links>
-        <router-link :to="{name: 'app.About'}">{{ $t('app.view.About') }}</router-link>
+        <router-link :to="{name: 'app.About'}">{{ t('app.view.About') }}</router-link>
       </template>
     </Footer>
   </div>
@@ -16,27 +16,31 @@
 
 <script>
 import {computed} from "vue"
+import {useI18n} from "@i18n"
 
-import i18n, {translateMixin} from "@/i18n";
 import Navbar from "@/modules/app/layouts/Navbar";
 import Footer from "@/modules/app/layouts/Footer";
 import appStore from "@/modules/app/store/appStore";
 import authStore from "@/modules/auth/store/authStore";
 
+import routeTitleUpdating from "./routeTitleUpdating"
+
 export default {
-  components: {Footer, Navbar},
-  mixins: [
-    translateMixin,
-  ],
+  components: {
+    Navbar,
+    Footer,
+  },
   setup() {
+    routeTitleUpdating.install()
     const userAuthenticated = computed(() => authStore.getters.isLoggedIn())
+    const i18n = useI18n()
 
     const navLinks = computed(() => {
       const links = [
-        {to: {name: 'bestiary.BreedingStationsIndex'}, text: i18n.translate('bestiary.view.BreedingStationsIndex')},
+        {to: {name: 'bestiary.BreedingStationsIndex'}, text: i18n.t('bestiary.view.BreedingStationsIndex')},
       ]
       if (userAuthenticated.value) {
-        links.unshift({to: {name: 'bestiary.MyBeasts'}, text: i18n.translate('bestiary.view.MyBeasts')})
+        links.unshift({to: {name: 'bestiary.MyBeasts'}, text: i18n.t('bestiary.view.MyBeasts')})
       }
 
       return links
@@ -44,6 +48,8 @@ export default {
 
 
     return {
+      ...i18n,
+
       appName: appStore.state.appName,
       navLinks,
       userAuthenticated,

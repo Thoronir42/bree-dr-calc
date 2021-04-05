@@ -27,11 +27,15 @@
     "schema": {
       "father": {
         "type": "relation:beast",
-        "domain": "gender=m"
+        "itemFilter": [
+          ["!", ["=", "general.gender", "f"]]
+        ]
       },
       "mother": {
         "type": "relation:beast",
-        "domain": "gender=f"
+        "itemFilter": [
+          ["!", ["=", "general.gender", "m"]]
+        ]
       },
       "wright": {
         "type": "number",

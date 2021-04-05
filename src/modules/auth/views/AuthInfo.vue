@@ -1,6 +1,6 @@
 <template>
   <div class="auth-page">
-    <h1>{{ $t('auth.view.AuthInfo') }}</h1>
+    <h1>{{ t('auth.view.AuthInfo') }}</h1>
 
     <p>Právě zde máte uloženy tyto údaje:</p>
     <dl class="definitions">
@@ -36,22 +36,22 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import {computed, ref} from "vue"
+import {useRouter} from "vue-router"
+import {useI18n} from "@i18n"
+import {DecInput} from "@vtf-form"
 
-import {translateMixin} from "@/i18n.ts";
-import DecInput from "@/modules/typeful/components/DecInput";
-import {computed, ref} from "vue";
-import authStore from "@/modules/auth/store/authStore.ts";
-import {useRouter} from "vue-router";
-import beastsStore from "@/modules/bestiary/store/beastsStore.ts";
+import authStore from "../store/authStore"
+import beastsStore from "@/modules/bestiary/store/beastsStore.ts"
 
 export default {
-  components: {DecInput},
-  mixins: [
-    translateMixin,
-  ],
+  components: {
+    DecInput,
+  },
   setup() {
     const $router = useRouter()
+    const i18n = useI18n()
 
     const confirmation = ref('')
     const confirmationText = ref('Smazat všechna data')
@@ -63,6 +63,7 @@ export default {
     }))
 
     return {
+      ...i18n,
       userName: authStore.state.userName,
 
       confirmation,

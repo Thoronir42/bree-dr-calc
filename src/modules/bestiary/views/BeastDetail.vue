@@ -1,6 +1,6 @@
 <template>
   <div class="beast-detail">
-    <h1>{{ $t('bestiary.view.BeastDetail' + (beastId ? '' : '.new')) }}</h1>
+    <h1>{{ t('bestiary.view.BeastDetail' + (beastId ? '' : '.new')) }}</h1>
 
     <div class="card">
       <div class="card-body">
@@ -21,17 +21,15 @@
 <script lang="ts">
 import {defineComponent, reactive} from "vue"
 import {useRouter} from "vue-router"
+import {useI18n} from "@i18n"
 
 import * as beastsStore from "../store/beastsStore"
-import BeastForm from "@/modules/bestiary/components/BeastForm.vue";
-import DachshundFieldset from "@/modules/bestiary-dachshund/components/DachshundFieldset.vue";
-import {Beast} from "@/modules/bestiary/model/Bestiary";
-import {translateMixin} from "@/i18n";
+import BeastForm from "../components/BeastForm.vue"
+import {Beast} from "../model/Bestiary"
+import DachshundFieldset from "@/modules/bestiary-dachshund/components/DachshundFieldset.vue"
+
 
 export default defineComponent({
-  mixins: [
-    translateMixin,
-  ],
   components: {
     BeastForm,
     DachshundFieldset,
@@ -41,6 +39,7 @@ export default defineComponent({
   },
   setup(props) {
     const $router = useRouter()
+    const i18n = useI18n()
 
     const beast = reactive({
       id: null as string | null,
@@ -76,6 +75,8 @@ export default defineComponent({
     }
 
     return {
+      ...i18n,
+
       beast,
       saveBeast,
     }

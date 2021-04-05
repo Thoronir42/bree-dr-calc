@@ -2,7 +2,7 @@
   <div class="sign-in">
     <div class="card">
       <div class="card-header">
-        <h1>{{ $t('auth.view.SignIn') }}</h1>
+        <h1>{{ t('auth.view.SignIn') }}</h1>
       </div>
 
       <div class="card-body">
@@ -14,27 +14,23 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import {ref} from "vue";
 import {useRouter} from "vue-router"
+import {useI18n} from "@i18n"
+import {DecForm, DecFormInput, getFields} from "@vtf-form"
 
-import DecForm from "@/modules/typeful/components/DecForm.vue"
-import {getFields} from "@/modules/typeful/services/FormsService"
-import {translateMixin} from "@/i18n.ts"
-import DecFormInput from "@/modules/typeful/components/DecFormInput.vue"
 import authStore from "@/modules/auth/store/authStore.ts"
 
 
 export default {
-  mixins: [
-    translateMixin,
-  ],
   components: {
     DecFormInput,
     DecForm,
   },
   setup() {
     const $router = useRouter()
+    const i18n = useI18n()
 
     const decFields = ref(getFields({
       userName: {type: "text"},
@@ -43,8 +39,9 @@ export default {
     }))
 
     return {
+      ...i18n,
       decFields,
-      onSubmit: (values) => {
+      onSubmit: (values: any) => {
         authStore.actions.logIn(values.userName)
         $router.push("/")
       },

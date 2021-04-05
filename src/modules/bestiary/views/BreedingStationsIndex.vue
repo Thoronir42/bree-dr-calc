@@ -1,5 +1,5 @@
 <template>
-  <h1>{{ $t('bestiary.view.BreedingStationsIndex') }}</h1>
+  <h1>{{ t('bestiary.view.BreedingStationsIndex') }}</h1>
 
   <div class="stations-listing">
     <div v-for="station in stations" :key="station.id" class="card card-station">
@@ -45,30 +45,29 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from "vue";
-
-import {translateMixin} from "@/i18n.ts";
+import {defineComponent, ref} from "vue"
+import {useI18n} from "@i18n"
+import RegioFlag from "@i18n/components/RegioFlag"
 
 import * as beastsStore from "../store/beastsStore"
-import RegioFlag from "@/modules/i18n/components/RegioFlag";
-import BreedingStationForm from "@/modules/bestiary/components/BreedingStationForm.vue";
-import {BreedingStation} from "../model/Bestiary";
+import {BreedingStation} from "../model/Bestiary"
+import BreedingStationForm from "../components/BreedingStationForm.vue"
 
 export default defineComponent({
-  mixins: [
-    translateMixin,
-  ],
   components: {
     BreedingStationForm,
     RegioFlag,
   },
   setup() {
+    const i18n = useI18n()
+
     const stations = beastsStore.state.breedingStations
     const stationWorkingCopy = ref<BreedingStation | null>(null)
     const stationIsPersisted = ref(false)
     const deleteId = ref(null as string|null)
 
     return {
+      ...i18n,
       stations,
 
       stationWorkingCopy,
