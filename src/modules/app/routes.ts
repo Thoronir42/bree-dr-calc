@@ -6,6 +6,9 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     name: 'app.Home',
     component: Home,
+    meta: {
+      layoutMode: 'center',
+    },
   },
   {
     path: '/about',

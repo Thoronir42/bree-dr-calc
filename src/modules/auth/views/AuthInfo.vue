@@ -29,7 +29,7 @@
 
     <h2 class="mt-4">Upozornění o datech</h2>
     <p>
-      Právě pracujete v <b class="text-warning">Lokálním</b> režimu. Všechny údaje jsou uloženy pouze na vašem disku a
+      Právě pracujete s <b class="text-warning">Lokálním</b> účtem. Všechny údaje jsou uloženy pouze na vašem disku a
       neukládají se nikde na internetu.<br/>
       Jelikož jsou data ukládána lokálně, máte k nim přístup přístup pouze v tomto zařízení a pouze v tomto prohlížeči.
     </p>

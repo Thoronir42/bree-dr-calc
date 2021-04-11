@@ -1,4 +1,6 @@
 {
+  "auth.accountTypeLabel": "Účet",
+  "auth.accountType.local": "Lokální",
   "auth.view.SignIn": "Přihlášení",
   "auth.view.AuthInfo": "Informace o uložených údajích",
   "auth.signIn.userName": "Jméno"

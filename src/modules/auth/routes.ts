@@ -8,6 +8,7 @@ const routes: RouteRecordRaw[] = [
     component: () => import('./views/SignIn.vue'),
     meta: {
       title: 'auth.view.SignIn',
+      layoutMode: 'center',
     },
     beforeEnter: ((_to, _from, next) => {
       if (authStore.getters.isLoggedIn()) {

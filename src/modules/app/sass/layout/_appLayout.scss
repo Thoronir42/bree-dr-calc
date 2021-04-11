@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-content: center;
+  min-height: 100vh;
 
   #navbar {
     $activeLinkColor: mix(#AED581, black, 75%);
@@ -19,8 +20,13 @@
   }
 
   > main {
+    flex: 1;
     margin-top: 2em;
     margin-bottom: 15vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .app-footer {
@@ -62,4 +68,8 @@
     }
   }
 
+  &.center > main {
+    align-items: center;
+    justify-content: center;
+  }
 }
